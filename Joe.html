@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Joe's Hotdog Stand</title>
+</head>
+<body>
+  <h1>Joe's Hotdog Stand Order</h1>
+  <div id="output"></div>
+
+  <script>
+
+    const HOTDOG = 4.99;
+    const FRIES = 3.99;
+    const SODA = 1.79;
+
+
+    let numDogs = prompt("How many hotdogs do you want?");
+    let numFries = prompt("How many French Fries do you want?");
+    let numSoda = prompt("How many Sodas do you want?");
+
+
+    numDogs = parseInt(numDogs);
+    numFries = parseInt(numFries);
+    numSoda = parseInt(numSoda);
+
+if ( numDogs < 0) {
+  alert("Please enter a valid number 0 or higher.");
+}
+
+if (numFries < 0) {
+    alert("Please enter a valid number 0 or higher.")
+}
+
+if (numSoda < 0) {
+    alert("Please enter a valid number 0 or higher.")
+}
+ function showMoney(num) {
+
+  let rounded = Math.round(num * 100) / 100;
+  let dollars = Math.floor(rounded);
+  let cents = Math.round((rounded - dollars) * 100);
+  if (cents < 10) {
+    return dollars + ".0" + cents;
+  } else {
+    return dollars + "." + cents;
+  }
+}
+
+    let dogsTotal = numDogs * HOTDOG;
+    let friesTotal = numFries * FRIES;
+    let sodaTotal = numSoda * SODA;
+
+    let subtotal = dogsTotal + friesTotal + sodaTotal;
+
+
+    let discount = 0;
+    if (subtotal >= 30) {
+      discount = subtotal * 0.10;
+    }
+
+    let subtotalAfter = subtotal - discount;
+
+
+    let tax = subtotalAfter * 0.0625;
+
+    let finalTotal = subtotalAfter + tax;
+
+    let output = "";
+    output += "Hotdogs ("+ numDogs +"): $" + showMoney(dogsTotal) + "<br>"; 
+    output += "Fries("+ numFries +"): $" + showMoney(friesTotal) + "<br>";
+    output += "Sodas("+ numSoda +"): $" + showMoney(sodaTotal) + "<br><hr>";
+
+    output += "Subtotal: $" + showMoney(subtotal) + "<br>";
+    output += "Discount: $" + showMoney(discount) + "<br>";
+    output += "Subtotal after discount: $" + showMoney(subtotalAfter) + "<br>";
+    output += "Tax: $" + showMoney(tax) + "<br><hr>";
+    output += "<b>Final Total: $" + showMoney(finalTotal) + "</b>";
+
+    document.getElementById("output").innerHTML = output;
+  </script>
+</body>
+</html>
